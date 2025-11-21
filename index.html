@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Search App</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Pokemon Search App</h1>
+    <form>
+      <label for="search-input">Search for Pokemon Name or ID:</label>
+      <input id="search-input" required>
+      <button id="search-button">Search</button>
+    </form>
+    <p id="note"><strong>Note</strong>: Pokémon name should be in lowercase, have special characters removed, and be dash separated. Also, if the Pokémon has either ♀ or ♂ as part of its name, the format is "name-f" or "name-m", respectively.</p>
+    <div id="pokemon-card">
+      <div id="pokemon">
+        <div id="pokemon-identity">
+          <div id="name-and-id">
+            <h2 id="pokemon-name"></h2>
+            <h2 id="pokemon-id"></h2>
+          </div>
+          <div id="weight-and-height">
+            <p id="weight"></p>
+            <p id="height"></p>
+          </div>
+        </div>
+        <div id="image-container"></div>
+        <div id="types"></div>
+      </div>
+      <img id="pokemon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png" alt="pokemon logo">
+      <table id="pokemon-stats">
+        <thead>
+          <tr>
+            <th>Base</th>
+            <th>Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HP:</td>
+            <td id="hp"></td>
+          </tr>
+          <tr>
+            <td>Attack:</td>
+            <td id="attack"></td>
+          </tr>
+          <tr>
+            <td>Defense:</td>
+            <td id="defense"></td>
+          </tr>
+          <tr>
+            <td>Sp. Attack:</td>
+            <td id="special-attack"></td>
+          </tr>
+          <tr>
+            <td>Sp. Defense:</td>
+            <td id="special-defense"></td>
+          </tr>
+          <tr>
+            <td>Speed:</td>
+            <td id="speed"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
