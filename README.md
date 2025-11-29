@@ -1,6 +1,6 @@
 # Pokémon Search App
 
-A simple JavaScript application that fetches Pokémon data from the PokéAPI and displays it to the user.
+A simple JavaScript application that fetches Pokémon data for the first 20 Pokémons from the PokéAPI and displays it to the user.
 
 ## Features
 - Search Pokémon by name or ID
