@@ -5,6 +5,7 @@ const nameEl = document.getElementById("creature-name");
 const id = document.getElementById("creature-id");
 const weight = document.getElementById("weight");
 const height = document.getElementById("height");
+const imageContainer = document.getElementById("image-container");
 const special = document.getElementById("special");
 const types = document.getElementById("types");
 const hp = document.getElementById("hp");
@@ -15,7 +16,7 @@ const spDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 const form = document.getElementById("pokeform");
 
-fetch("https://rpg-creature-api.freecodecamp.rocks/api/creatures")
+fetch("https://pokeapi.co/api/v2/pokemon")
   .then(res => res.json())
   .then(data => {
     
@@ -27,13 +28,23 @@ fetch("https://rpg-creature-api.freecodecamp.rocks/api/creatures")
         return;
       }
 
-      const found = data.find(
-        p => p.id === Number(searchInput.value) ||
-             p.name.toLowerCase() === searchInput.value.toLowerCase()
+      allPokemon = data.results;
+
+      const found = allPokemon.find(
+        (p, index) => {
+          let input;
+          if (!isNaN(Number(searchInput.value))) {
+            input = Number(searchInput.value);
+          } else {
+            input = searchInput.value;
+          }
+
+          return index + 1 === input || p.name.toLowerCase() === searchInput.value.toLowerCase();
+        }
       );
 
       if (found) {
-        fetchData(found.id);
+        fetchData(found.name);
       } else {
         alert("Creature not found");
       }
@@ -54,9 +65,9 @@ function showError(msg) {
   pokemonInfoEl.style.fontWeight = "bold";
 }
 
-const fetchData = async creatureId => {
+const fetchData = async creatureName => {
   try {
-    const res = await fetch(`https://rpg-creature-api.freecodecamp.rocks/api/creature/${creatureId}`);
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${creatureName}`);
     const data = await res.json();
     showData(data);
   } catch (err) {
@@ -72,13 +83,18 @@ function showData(data) {
   weight.textContent = `Weight: ${data.weight}`;
   height.textContent = `Height: ${data.height}`;
 
-  special.innerHTML = `
-    <p id="special-title">${data.special.name}</p>
-    <p>${data.special.description}</p>
+  imageContainer.innerHTML = `
+    <img src="${data.sprites.front_default}" alt="${data.name}">
   `;
 
+  special.innerHTML = `
+    <p id="special-title">Abilities</p>
+    ${data.abilities.map(ability => `<span>${ability.ability.name}</span>`).join(", ")}
+  `;
+
+  console.log();
   types.innerHTML = data.types
-    .map(type => `<div class="type" id="${type.name}">${type.name.toUpperCase()}</div>`)
+    .map(type => `<div class="type" id="${type.type.name}">${type.type.name.toUpperCase()}</div>`)
     .join("");
 
   hp.textContent = data.stats[0].base_stat;

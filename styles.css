@@ -76,7 +76,7 @@ button:active {
 
 #pokemon-info {
   width: 440px;
-  height: 250px;
+  height: 350px;
   border: 3px solid var(--border1);
   background-image: linear-gradient(#ffffffed, #ffffffed), url(https://i.pinimg.com/1200x/3a/6b/bc/3a6bbc84a841a889356e1f0d6ee5ba4e.jpg);
   background-size: 280px 280px;
@@ -100,8 +100,12 @@ button:active {
   margin-right: 10px;
 }
 
-#special {
-  margin-top: 10%;
+#image-container {
+  margin: 0 auto;
+}
+
+img {
+  height: 150px;
 }
 
 #special p {
